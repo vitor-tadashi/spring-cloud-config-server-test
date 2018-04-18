@@ -1,19 +1,19 @@
 {
-  name: 'application',
-  profiles: [ 'default' ],
-  label: 'master',
-  propertySources: [{
-    name: 'file:///myapp.yml',
-    source: {
-      'key01': 'value01',
-      'key03': null,
-      'key04.key01': 42
+  "name": "application",
+  "profiles": ["default"],
+  "label": "master",
+  "propertySources": [{
+    "name": "file:///myapp.yml",
+    "source": {
+      "key01": "value01",
+      "key03": null,
+      "key04.key01": 42
     }
   }, {
-    name: 'file:///application.yml',
-    source: {
-      'key01': 'banana',
-      'key02': 2
+    "name": "file:///application.yml",
+    "source": {
+      "key01": "banana",
+      "key02": 2
     }
   }]
 }

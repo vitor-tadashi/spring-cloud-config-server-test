@@ -101,15 +101,19 @@ function loadWithCallback (options, callback) {
   const name = options.name || options.application
   const client = endpoint.protocol === 'https:' ? https : http
 
-  client.request({
+  var optionRequest = {
     protocol: endpoint.protocol,
     hostname: endpoint.hostname,
     port: endpoint.port,
-    path: getPath(endpoint.path, name, options.profiles, options.label),
+    path: endpoint.path,
     auth: getAuth(options.auth, endpoint),
     rejectUnauthorized: options.rejectUnauthorized !== false,
     agent: options.agent
-  }, (res) => {
+  };
+
+  console.log(optionRequest);
+
+  client.request(optionRequest, (res) => {
     if (res.statusCode !== 200) { // OK
       res.resume() // it consumes response
       return callback(new Error('Invalid response: ' + res.statusCode))
@@ -121,6 +125,7 @@ function loadWithCallback (options, callback) {
     })
     res.on('end', () => {
       try {
+        console.log(response);
         const body = JSON.parse(response)
         callback(null, new Config(body))
       } catch (e) {
